@@ -1,5 +1,7 @@
 # WisDumb
 
+[![Java CI with Maven](https://github.com/conivek/wisdumb/actions/workflows/maven.yml/badge.svg)](https://github.com/conivek/wisdumb/actions/workflows/maven.yml)
+
 A Spring Boot/Java application for silly sayings masquerading as wisdom.
 
 The real _raison d'etre_ is to provide a project so simple that it doesn't get in the way of testing various modern architecture patterns and facilities, but that can still be contrived to add features to build those tests upon.
