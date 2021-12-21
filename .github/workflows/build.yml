@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  maven-build:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -21,13 +21,5 @@ jobs:
         cache: maven
     - name: Build the jar
       run: mvn -B package --file pom.xml
-
-  docker-build:
-
-    needs: maven-build
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag wisdumb:0.1.0-SNAPSHOT.$(git rev-parse --short=12 HEAD)
