@@ -1,6 +1,6 @@
 # WisDumb
 
-[![Java CI with Maven](https://github.com/conivek/wisdumb/actions/workflows/maven.yml/badge.svg)](https://github.com/conivek/wisdumb/actions/workflows/maven.yml)
+[![Java CI with Maven](https://github.com/conivek/wisdumb/actions/workflows/build.yml/badge.svg)](https://github.com/conivek/wisdumb/actions/workflows/build.yml)
 
 A Spring Boot/Java application for silly sayings masquerading as wisdom.
 
