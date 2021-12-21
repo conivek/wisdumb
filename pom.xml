@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>conivek</groupId>
 	<artifactId>wisdumb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>wisdumb</name>
 	<description>Silly sayings masquerading as wisdom</description>
 	<properties>
