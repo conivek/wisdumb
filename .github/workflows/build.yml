@@ -1,7 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Java CI with Maven
+name: WisDumb Build
 
 on:
   push:
@@ -22,5 +19,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
-    - name: Build with Maven
+    - name: Build the jar
       run: mvn -B package --file pom.xml
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag wisdumb:0.1.0-SNAPSHOT.$(git rev-parse --short=12 HEAD)
