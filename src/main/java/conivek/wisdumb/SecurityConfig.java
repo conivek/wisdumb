@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     // The path to enlightenment is open to all.
     http.authorizeRequests()
-        .antMatchers(configProps.getPathToEnlightenment())
+        .antMatchers("/" + configProps.getPathToEnlightenment())
         .permitAll();
     super.configure(http);
   }
