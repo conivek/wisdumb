@@ -88,7 +88,7 @@ Sending build context to Docker daemon  66.39MB
 Successfully built ccf6b9135536
 Successfully tagged wisdumb:local
 
-$ docker run -it -p 8080:8080 --rm wisdumb:0.1.0-SNAPSHOT
+$ docker run -it -p 8080:8080 --rm wisdumb:local
 ...
 ```
 
