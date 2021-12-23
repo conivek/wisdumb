@@ -8,8 +8,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-  REPO_USERNAME: ${{ github.actor }}
 
 jobs:
   build:
@@ -23,12 +21,14 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adopt'
+        distribution: 'temurin'
         cache: maven
     - name: Maven Build
       run: mvn -B install --file pom.xml
     - name: Maven Deploy
       run: mvn -B deploy -DskipTests --file pom.xml
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
 
     - name: Log into the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
