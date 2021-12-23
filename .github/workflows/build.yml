@@ -8,6 +8,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  REPO_USERNAME: ${{ github.actor }}
 
 jobs:
   build:
