@@ -188,13 +188,13 @@
       <url>https://maven.pkg.github.com/conivek/wisdumb</url>
     </repository>
   </distributionManagement>
-  <servers>
+  <!--servers>
     <server>
       <id>github</id>
       <username>${env.REPO_USERNAME}</username>
       <password>${env.REPO_PASSWORD}</password>
     </server>
-  </servers>
+  </servers-->
 
   <build>
     <plugins>
