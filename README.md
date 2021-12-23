@@ -8,17 +8,19 @@ A Spring Boot/Java application for silly sayings masquerading as wisdom.
 
 ## Requirements
 
+**Status**: Build pipeline is complete. App consists of only a stubbed HTML page. Next step will be support for deployment to Kubernetes.
+
 - UI
-  - Unauth'd page to return random "wisdom," e.g., http[s]://<host:port>/ui/enlightenment.
+  - Unauth'd page to return random "wisdom," e.g., http[s]://<host:port>/ui/enlightenment. _\[DONE\]_
   - Auth'd page for "wisdom" CRUD operations.
   - Use [OpenID Connect](https://openid.net/connect/) provider authentication.
 - Internal REST API Service
   - Return random "wisdom."
   - Support for "wisdom" CRUD operations.
-- Build Using GitHub Actions
-  - Maven build for the Spring Boot/Java app.
-  - Docker image build.
-  - Store artifacts using GitHub Packages.
+- Build Using GitHub Actions _\[DONE\]_
+  - Maven build for the Spring Boot/Java app. _\[DONE\]_
+  - Docker image build. _\[DONE\]_
+  - Store artifacts using GitHub Packages. _\[DONE\]_
 - Deploy
   - Package using a Helm chart.
   - Deploy Helm chart to local Kubernetes cluster using FluxCD.
