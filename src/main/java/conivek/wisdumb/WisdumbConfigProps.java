@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 /**
- *
+ * WisDumb externalized configuration properties.
  */
 @Component("wisdumbConfigProps")
 @Configuration

@@ -16,7 +16,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- *
+ * Application security opens the path to enlightenment.
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- *
+ * Controller for the WisDumb UI.
  */
 @Controller
 public class WisdumbUIController {
