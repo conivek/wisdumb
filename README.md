@@ -8,12 +8,10 @@ A Spring Boot/Java application for silly sayings masquerading as wisdom.
 
 ## Requirements
 
-These requirements will be adjusted and implemented incrementally.
-
 - UI
   - Unauth'd page to return random "wisdom," e.g., http[s]://<host:port>/ui/enlightenment.
   - Auth'd page for "wisdom" CRUD operations.
-  - User registration page with [OpenID Connect](https://openid.net/connect/) provider authentication.
+  - Use [OpenID Connect](https://openid.net/connect/) provider authentication.
 - Internal REST API Service
   - Return random "wisdom."
   - Support for "wisdom" CRUD operations.
@@ -22,8 +20,8 @@ These requirements will be adjusted and implemented incrementally.
   - Docker image build.
   - Store artifacts using GitHub Packages.
 - Deploy
-  - Helm chart.
-  - Deploy chart to local Kubernetes cluster using FluxCD.
+  - Package using a Helm chart.
+  - Deploy Helm chart to local Kubernetes cluster using FluxCD.
 
 ## Build and Run
 
@@ -32,11 +30,17 @@ These requirements will be adjusted and implemented incrementally.
 WisDumb is automatically built for commits to the `main` branch, as well as for PRs that target the `main` branch. See [the WisDumb container page](https://github.com/conivek/wisdumb/pkgs/container/wisdumb) for the available WisDumb Docker images. You can run the Docker image locally.
 
 ```
-$ docker run -it -p 8080:8080 --rm ghcr.io/conivek/wisdumb:pr-5
-Unable to find image 'ghcr.io/conivek/wisdumb:pr-5' locally
-pr-5: Pulling from conivek/wisdumb
-...
-Status: Downloaded newer image for ghcr.io/conivek/wisdumb:pr-5
+$ docker run -it -p 8080:8080 --rm ghcr.io/conivek/wisdumb:main
+Unable to find image 'ghcr.io/conivek/wisdumb:main' locally
+main: Pulling from conivek/wisdumb
+97518928ae5f: Already exists
+56981b1bb25b: Already exists
+36467aa27abe: Already exists
+24f54b022573: Already exists
+43b2490fd519: Pull complete
+83237ec07d2c: Pull complete
+Digest: sha256:1c898bf20a0b2ee00a193a7cae0f9204e4328687bc6936e67b870793321d36ed
+Status: Downloaded newer image for ghcr.io/conivek/wisdumb:main
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -46,10 +50,10 @@ Status: Downloaded newer image for ghcr.io/conivek/wisdumb:pr-5
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v2.6.1)
 
-2021-12-22 23:23:43.347  INFO 1 --- [           main] conivek.wisdumb.WisdumbApplication       : Starting WisdumbApplication v0.1.0-SNAPSHOT using Java 11.0.13 on ed9dacb01dca with PID 1 (/opt/wisdumb/wisdumb.jar started by root in /)
+2021-12-23 18:44:14.300  INFO 1 --- [           main] conivek.wisdumb.WisdumbApplication       : Starting WisdumbApplication v0.1.0-SNAPSHOT using Java 11.0.13 on 93d61a98b7d0 with PID 1 (/opt/wisdumb/wisdumb.jar started by root in /)
 ...
-2021-12-22 23:24:14.877  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-12-22 23:24:14.983  INFO 1 --- [           main] conivek.wisdumb.WisdumbApplication       : Started WisdumbApplication in 34.505 seconds (JVM running for 37.19)
+2021-12-23 18:44:50.142  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-23 18:44:50.209  INFO 1 --- [           main] conivek.wisdumb.WisdumbApplication       : Started WisdumbApplication in 38.748 seconds (JVM running for 40.954)
 ```
 
 ### Local Workflow
@@ -61,26 +65,15 @@ $ mvn clean install
 Running `/Users/kevin.condon/repos/wisdumb/mvnw`...
 [INFO] Scanning for projects...
 ...
-[INFO] ------------------------------------------------------------------------
+[[INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  34.858 s
-[INFO] Finished at: 2021-12-22T13:57:41-05:00
+[INFO] Total time:  30.694 s
+[INFO] Finished at: 2021-12-23T13:24:53-05:00
 [INFO] ------------------------------------------------------------------------
 
 $ java -jar target/wisdumb-0.1.0-SNAPSHOT.jar
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::                (v2.6.1)
-
-2021-12-22 13:58:55.702  INFO 22280 --- [           main] conivek.wisdumb.WisdumbApplication       : Starting WisdumbApplication v0.1.0-SNAPSHOT using Java 11.0.11 on MC******.
 ...
-2021-12-22 13:59:12.394  INFO 22280 --- [           main] conivek.wisdumb.WisdumbApplication       : Started WisdumbApplication in 23.149 seconds (JVM running for 24.643)
 ```
 
 Test WisDumb by navigating to the main application UI page at http://localhost:8080/ui/enlightenment.
@@ -88,25 +81,15 @@ Test WisDumb by navigating to the main application UI page at http://localhost:8
 The WisDumb Docker image can also be built and run from the command-line in the repository root directory.
 
 ```
-$ docker build . --file Dockerfile --tag wisdumb:0.1.0-SNAPSHOT
-Sending build context to Docker daemon  66.24MB
+$ docker build . --file Dockerfile --tag wisdumb:local
+docker build . --file Dockerfile --tag wisdumb:local
+Sending build context to Docker daemon  66.39MB
 ...
-Successfully built b3bd6e98cc27
-Successfully tagged wisdumb:0.1.0-SNAPSHOT
+Successfully built ccf6b9135536
+Successfully tagged wisdumb:local
 
 $ docker run -it -p 8080:8080 --rm wisdumb:0.1.0-SNAPSHOT
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::                (v2.6.1)
-
-2021-12-22 19:07:31.294  INFO 1 --- [           main] conivek.wisdumb.WisdumbApplication       : Starting WisdumbApplication v0.1.0-SNAPSHOT using Java 11.0.13 on 6d809bb4ba88 with PID 1 (/opt/wisdumb/wisdumb.jar started by root in /)
 ...
-2021-12-22 19:08:09.311  INFO 1 --- [           main] conivek.wisdumb.WisdumbApplication       : Started WisdumbApplication in 41.69 seconds (JVM running for 45.054)
 ```
 
 ## Deploy
