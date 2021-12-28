@@ -6,8 +6,6 @@ on:
     tags: [ v* ]
   pull_request:
     branches: [ main ]
-  release:
-    types: [ released ]
 
 env:
   REGISTRY: ghcr.io
@@ -28,6 +26,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - name: Log Stuff
+      run: echo "${{ github.ref_name }}"
     - name: Maven Build
       run: mvn -B package --file pom.xml -Drevision=pr_${{ github.event.number }} -Dchangelist=-SNAPSHOT
 
