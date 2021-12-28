@@ -6,6 +6,8 @@ on:
     tags: [ v* ]
   pull_request:
     branches: [ main ]
+  release:
+    types: [ released ]
 
 env:
   REGISTRY: ghcr.io
@@ -27,7 +29,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Maven Build
-      run: mvn -B package --file pom.xml -Drevision=pr_${{ github.event.number }} -Dchangelist=-SNAPSHOT
+      run: >
+        mvn -B package
+          -Drevision=pr_${{ github.event.number }} -Dchangelist=-SNAPSHOT
+          --file pom.xml
 
     - name: Log into the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
