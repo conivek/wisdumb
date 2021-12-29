@@ -26,10 +26,9 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Log Stuff
-      run: echo "${{ github.ref_name }} ${{ github.ref_type }} ${{ github.event_name }}"
     - name: Maven Build
-      run: mvn -B package --file pom.xml -Drevision=pr_${{ github.event.number }} -Dchangelist=-SNAPSHOT
+      # We don't deploy the JAR, so the version doesn't really matter.
+      run: mvn -B package --file pom.xml
 
     - name: Log into the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9

@@ -23,7 +23,7 @@
     <changelist>-SNAPSHOT</changelist>
     <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
     <java.version>11</java.version>
-    <revision>0.1.0</revision>
+    <revision>0.0.0</revision>
     <sha1 />
     <spring-cloud.version>2021.0.0</spring-cloud.version>
     <testcontainers.version>1.16.2</testcontainers.version>
