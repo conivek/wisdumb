@@ -27,6 +27,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Maven Build
+      # We don't deploy the JAR, so the version doesn't really matter.
       run: mvn -B package --file pom.xml
 
     - name: Log into the Container registry
