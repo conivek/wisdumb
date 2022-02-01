@@ -27,8 +27,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Maven Build
-      # We don't deploy the JAR, so the version doesn't really matter.
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -Drevision='' -Dsha1=${{ github.sha }} -Dchangelist=''
 
     - name: Log into the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
